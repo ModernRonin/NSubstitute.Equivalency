@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Authors>Modern Ronin</Authors>
+		<Description>Equivalency based argument matcher for NSubstitute</Description>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<!-- uncomment the next two lines once paket supports snupkg -->
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<RepositoryUrl>https://github.com/ModernRonin/NSubstitute.Equivalency.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageProjectUrl>https://github.com/ModernRonin/NSubstitute.Equivalency</PackageProjectUrl>
+		<PackageOutputPath>./nupkg</PackageOutputPath>
+		<PackageLicenseExpression>CC-BY-SA-4.0</PackageLicenseExpression>
+		<PackageTags>nsubstitute, fluentassertions, equivalency, argument matcher</PackageTags>
+		<Title>NSubstitute.Equivalency</Title>
+	</PropertyGroup>
+	<Import Project="release.history" />
+	<ItemGroup>
+		<PackageReference Include="FluentAssertions" Version="5.*" />
+		<PackageReference Include="NSubstitute" Version="4.*" />
+	</ItemGroup>
+</Project>

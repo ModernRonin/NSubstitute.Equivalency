@@ -1,55 +1,11 @@
 using System;
 using FluentAssertions;
-using FluentAssertions.Equivalency;
-using NSubstitute;
-using NSubstitute.Core;
-using NSubstitute.Core.Arguments;
 using NSubstitute.Exceptions;
 using NUnit.Framework;
 
-namespace UsageTests
+namespace NSubstitute.Equivalency.Tests
 {
-    public class EquivalencyArgumentMatcher<T> : IArgumentMatcher<T>, IDescribeNonMatches
-    {
-        readonly Func<EquivalencyAssertionOptions<T>, EquivalencyAssertionOptions<T>> _configure;
-        readonly T _expectation;
-        string _failedExpectations = string.Empty;
-
-        public EquivalencyArgumentMatcher(T expectation,
-            Func<EquivalencyAssertionOptions<T>, EquivalencyAssertionOptions<T>> configure)
-        {
-            _expectation = expectation;
-            _configure = configure;
-        }
-
-        public string DescribeFor(object argument) => _failedExpectations;
-
-        public bool IsSatisfiedBy(T argument)
-        {
-            try
-            {
-                argument.Should().BeEquivalentTo(_expectation, _configure);
-                return true;
-            }
-            catch (Exception x)
-            {
-                _failedExpectations = x.Message;
-                return false;
-            }
-        }
-    }
-
-    public static class Arg
-    {
-        public static ref T IsEquivalentTo<T>(T value) => ref IsEquivalentTo(value, _ => _);
-
-        public static ref T IsEquivalentTo<T>(T value,
-            Func<EquivalencyAssertionOptions<T>, EquivalencyAssertionOptions<T>> configure) =>
-            ref ArgumentMatcher.Enqueue(new EquivalencyArgumentMatcher<T>(value, configure));
-    }
-
-    public class Tests
-
+    public class ArgExTests
     {
         public class Person
         {
@@ -67,10 +23,10 @@ namespace UsageTests
         public void If_equivalency_is_given()
         {
             var service = Substitute.For<ISomeInterface>();
-            UseService(service);
+            DoSomethingWith(service);
 
             service.Received()
-                .Use(Arg.IsEquivalentTo(new Person
+                .Use(ArgEx.IsEquivalentTo(new Person
                 {
                     FirstName = "John",
                     LastName = "Doe",
@@ -82,13 +38,13 @@ namespace UsageTests
         public void If_equivalency_is_not_given()
         {
             var service = Substitute.For<ISomeInterface>();
-            UseService(service);
+            DoSomethingWith(service);
 
             var receivedMsg = string.Empty;
             try
             {
                 service.Received()
-                    .Use(Arg.IsEquivalentTo(new Person
+                    .Use(ArgEx.IsEquivalentTo(new Person
                     {
                         FirstName = "John",
                         LastName = "Doe",
@@ -101,10 +57,10 @@ namespace UsageTests
             }
 
             var expected = split(@"Expected to receive a call matching:
-	Use(NSubstitute.Core.Arguments.ArgumentMatcher+GenericToNonGenericMatcherProxyWithDescribe`1[UsageTests.Tests+Person])
+	Use(NSubstitute.Core.Arguments.ArgumentMatcher+GenericToNonGenericMatcherProxyWithDescribe`1[NSubstitute.Equivalency.Tests.ArgExTests+Person])
 Actually received no matching calls.
 Received 1 non-matching call (non-matching arguments indicated with '*' characters):
-	Use(*Tests+Person*)
+	Use(*ArgExTests+Person*)
 		arg[0]: Expected member Birthday to be <1968-07-01>, but found <1968-06-01>.");
 
             split(receivedMsg).Should().StartWith(expected);
@@ -121,17 +77,35 @@ Received 1 non-matching call (non-matching arguments indicated with '*' characte
         public void With_custom_equivalency_configuration()
         {
             var service = Substitute.For<ISomeInterface>();
-            UseService(service);
+            DoSomethingWith(service);
 
             service.Received()
-                .Use(Arg.IsEquivalentTo(new Person
+                .Use(ArgEx.IsEquivalentTo(new Person
                 {
                     FirstName = "John",
                     LastName = "Doe"
                 }, cfg => cfg.Excluding(p => p.Birthday)));
         }
 
-        static void UseService(ISomeInterface service)
+        [Test]
+        public void Without_ArgEx()
+        {
+            var service = Substitute.For<ISomeInterface>();
+            Person received = null;
+            service.WhenForAnyArgs(s => s.Use(null)).Do(ci => received = ci.Arg<Person>());
+
+            DoSomethingWith(service);
+
+            received.Should()
+            .BeEquivalentTo(new Person
+            {
+                FirstName = "John",
+                LastName = "Doe",
+                Birthday = new DateTime(1968, 6, 1)
+            });
+        }
+
+        static void DoSomethingWith(ISomeInterface service)
         {
             service.Use(new Person
             {
