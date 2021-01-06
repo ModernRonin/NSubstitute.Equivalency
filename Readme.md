@@ -1,7 +1,7 @@
 # NSubstitute.Equivalency
 
-[![NuGet](https://img.shields.io/nuget/v/NSubstitute.Equivalency.svg)](https://www.nuget.org/packages/NSubstitute.Equivalency/)
-[![NuGet](https://img.shields.io/nuget/dt/NSubstitute.Equivalency.svg)](https://www.nuget.org/packages/NSubstitute.Equivalency)
+[![NuGet](https://img.shields.io/nuget/v/NSubstituteEquivalency.svg)](https://www.nuget.org/packages/NSubstituteEquivalency/)
+[![NuGet](https://img.shields.io/nuget/dt/NSubstituteEquivalency.svg)](https://www.nuget.org/packages/NSubstituteEquivalency)
 
 ## Motivation
 For an intro what this library is solving, check out my [blog article](https://modernronin.github.io/2021/01/06/NSubstitute-and-equivalency-argument-matching/).
