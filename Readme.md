@@ -1,7 +1,8 @@
 # NSubstitute.Equivalency
-
+![CI Status](https://github.com/ModernRonin/ModernRonin/NSubstitute.Equivalency/actions/workflows/dotnet.yml/badge.svg)
 [![NuGet](https://img.shields.io/nuget/v/NSubstituteEquivalency.svg)](https://www.nuget.org/packages/NSubstituteEquivalency/)
 [![NuGet](https://img.shields.io/nuget/dt/NSubstituteEquivalency.svg)](https://www.nuget.org/packages/NSubstituteEquivalency)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
 
 ## Motivation
 For an intro what this library is solving, check out my [blog article](https://modernronin.github.io/2021/01/06/NSubstitute-and-equivalency-argument-matching/).
