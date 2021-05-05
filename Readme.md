@@ -1,5 +1,5 @@
 # NSubstitute.Equivalency
-![CI Status](https://github.com/ModernRonin/ModernRonin/NSubstitute.Equivalency/actions/workflows/dotnet.yml/badge.svg)
+![CI Status](https://github.com/ModernRonin/NSubstitute.Equivalency/actions/workflows/dotnet.yml/badge.svg)
 [![NuGet](https://img.shields.io/nuget/v/NSubstituteEquivalency.svg)](https://www.nuget.org/packages/NSubstituteEquivalency/)
 [![NuGet](https://img.shields.io/nuget/dt/NSubstituteEquivalency.svg)](https://www.nuget.org/packages/NSubstituteEquivalency)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
