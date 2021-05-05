@@ -7,7 +7,8 @@ on:
   # Triggers the workflow on push to the master branch
   push:
     branches: [ master ]
-    paths: NSubstituteEquivalency/release.history
+    paths: 
+      - 'NSubstituteEquivalency/release.history'
 
 # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
