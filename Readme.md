@@ -15,6 +15,13 @@ or
 dotnet paket add NSubstituteEquivalency
 ```
 
+## Release History
+1.1.0:
+* feature: added ArgEx.IsCollectionEquivalentTo()
+
+1.0.0: initial nuget release
+
+
 ## Use it
 ```csharp
 var service = Substitute.For<ISomeInterface>();
@@ -42,3 +49,18 @@ service.Received()
         LastName = "Doe"
     }, cfg => cfg.Excluding(p => p.Birthday)));
 ```
+
+or 
+
+```csharp
+var service = Substitute.For<ISomeInterface>();
+DoSomethingWith(service);
+
+service.Received()
+    .UseCollection(ArgEx.IsCollectionEquivalentTo(new []
+    {
+        new Person(){FirstName = "Alice", LastName = "Wonderland", Birthday = new DateTime(1968, 6, 1)},
+        new Person(){FirstName = "Bob", LastName = "Peanut", Birthday = new DateTime(1972, 9, 13)},
+    }));
+```
+
