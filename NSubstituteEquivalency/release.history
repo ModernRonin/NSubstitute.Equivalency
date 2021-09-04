@@ -1,7 +1,9 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Version>1.1.0</Version>
+    <Version>2.0.0</Version>
     <PackageReleaseNotes>
+2.0.0
+* breaking change: upgraded to FluentAssertions 6.x
 1.1.0
 	* feature: added ArgEx.IsCollectionEquivalentTo()
 1.0.0
