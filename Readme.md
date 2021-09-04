@@ -17,6 +17,9 @@ dotnet paket add NSubstituteEquivalency
 ```
 
 ## Release History
+2.0.0
+* breaking change: upgraded to FluentAssertions 6.x
+
 1.1.0:
 * feature: added ArgEx.IsCollectionEquivalentTo()
 
