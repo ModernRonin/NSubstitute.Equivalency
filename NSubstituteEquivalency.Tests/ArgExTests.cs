@@ -47,7 +47,7 @@ namespace NSubstitute.Equivalency.Tests
 Actually received no matching calls.
 Received 1 non-matching call (non-matching arguments indicated with '*' characters):
 	Use(*ArgExTests+Person*)
-		arg[0]: Expected member Birthday to be <1968-07-01>, but found <1968-06-01>.", () => service.Received()
+		arg[0]: Expected property argument.Birthday to be <1968-07-01>, but found <1968-06-01>.", () => service.Received()
                 .Use(ArgEx.IsEquivalentTo(new Person
                 {
                     FirstName = "John",
@@ -137,7 +137,7 @@ Received 1 non-matching call (non-matching arguments indicated with '*' characte
 Actually received no matching calls.
 Received 1 non-matching call (non-matching arguments indicated with '*' characters):
 	UseCollection(*Person[]*)
-		arg[0]: Expected item[1].Birthday to be <1972-09-14>, but found <1972-09-13>.", () => service.Received().UseCollection(ArgEx.IsCollectionEquivalentTo(new []
+		arg[0]: Expected property argument[1].Birthday to be <1972-09-14>, but found <1972-09-13>.", () => service.Received().UseCollection(ArgEx.IsCollectionEquivalentTo(new []
             {
                 new Person(){FirstName = "Alice", LastName = "Wonderland", Birthday = new DateTime(1968, 6, 1)},
                 new Person(){FirstName = "Bob", LastName = "Peanut", Birthday = new DateTime(1972, 9, 14)},
